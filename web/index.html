@@ -13,8 +13,8 @@
         <ul class="list-group">
             <li class="list-group-item" ng-repeat="product in store.products | orderBy:'-price' | limitTo:3" ng-hide="product.soldOut">
                 <h3>
-                    <img ng-src="{{ product.image.thumb }}" />
-                    {{ product.name }}
+                    <img class = "small-img img-circle" ng-src="{{ product.image.thumb }}" />
+                    &nbsp;{{ product.name }}
                     <em class="pull-right">{{ product.price | currency }}</em>
                 </h3>
                 <p>
@@ -28,7 +28,7 @@
                     </ul>
                     <div class="panel" ng-show="panel.checkTab(1)">
                         <h4>Description</h4>
-                        <p>{{product.description | limitTo:150 | uppercase }}</p>
+                        <blockquote>{{product.description | limitTo:150 | uppercase }}</blockquote>
                     </div>
                     <div class="panel" ng-show="panel.checkTab(2)">
                         <h4>Specifications</h4>
