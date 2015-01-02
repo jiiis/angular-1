@@ -1,10 +1,6 @@
 (function() {
     var app = angular.module('store', []);
 
-    app.controller('StoreController', function() {
-        this.products = gems;
-    });
-
     var gems = [
         {
             name: 'erNiuNiu',
@@ -40,4 +36,20 @@
             soldOut: false
         }
     ];
+
+    app.controller('StoreController', function() {
+        this.products = gems;
+    });
+
+    app.controller('PanelController', function() {
+        this.tab = 1;
+
+        this.setTab = function(tab) {
+            this.tab = tab;
+        };
+
+        this.checkTab = function(tab) {
+            return this.tab === tab;
+        };
+    });
 })();
