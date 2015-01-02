@@ -6,6 +6,7 @@
         <title>Learning Angular JS</title>
 
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="http://bootswatch.com/darkly/bootstrap.min.css">
     </head>
     <body class="container" ng-controller="StoreController as store">
         <h1 class="text-center">erNiuNiu Crafted Store</h1>
@@ -19,21 +20,21 @@
                 <p>
                     <button class="pull-right" ng-show="product.canPurchase"> ADD TO CART </button>
                 </p>
-                <section ng-init="tab=1">
+                <section ng-init="tab = 1">
                     <ul class="nav nav-pills">
-                        <li ng-class="{ active:tab === 1 }"><a href="" ng-click="tab=1">Description</a></li>
-                        <li ng-class="{ active:tab === 2 }"><a href="" ng-click="tab=2">Specifications</a></li>
-                        <li ng-class="{ active:tab === 3 }"><a href="" ng-click="tab=3">Reviews</a></li>
+                        <li ng-class="{ active:tab === 1 }"><a href="" ng-click="tab = 1">Description</a></li>
+                        <li ng-class="{ active:tab === 2 }"><a href="" ng-click="tab = 2">Specifications</a></li>
+                        <li ng-class="{ active:tab === 3 }"><a href="" ng-click="tab = 3">Reviews</a></li>
                     </ul>
-                    <div class="panel" ng-show="tab===1">
+                    <div class="panel" ng-show="tab === 1">
                         <h4>Description</h4>
                         <p>{{product.description | limitTo:150 | uppercase }}</p>
                     </div>
-                    <div class="panel" ng-show="tab===2">
+                    <div class="panel" ng-show="tab === 2">
                         <h4>Specifications</h4>
                         <blockquote>None yet</blockquote>
                     </div>
-                    <div class="panel" ng-show="tab===3">
+                    <div class="panel" ng-show="tab === 3">
                         <h4>Reviews</h4>
                         <blockquote>None yet</blockquote>
                     </div>
