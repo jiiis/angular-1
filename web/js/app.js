@@ -9,6 +9,7 @@
         name: 'erNiuNiu',
         price: 2.95,
         description: 'This is my lovely wife, erNiuNiu',
-        canPurchase: false
+        canPurchase: false,
+        soldOut: true
     };
 })();
