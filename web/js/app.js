@@ -10,6 +10,18 @@
                 full: 'images/gem_1.png',
                 thumb: 'images/gem_1_tb.png'
             },
+            reviews: [
+                {
+                    stars: 5,
+                    body: 'I love this product!',
+                    author: 'joe@thomas.com'
+                },
+                {
+                    stars: 1,
+                    body: 'This gem sucks!',
+                    author: 'suck@sucker.org'
+                }
+            ],
             canPurchase: true,
             soldOut: false
         },
