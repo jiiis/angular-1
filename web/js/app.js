@@ -8,6 +8,7 @@
     var gem = {
         name: 'erNiuNiu',
         price: 2.95,
-        description: 'This is my lovely wife, erNiuNiu'
+        description: 'This is my lovely wife, erNiuNiu',
+        canPurchase: false
     };
 })();
