@@ -129,6 +129,8 @@
                 product.reviews = [];
             }
 
+            this.review.createdOn = Date.now();
+
             product.reviews.push(this.review);
             this.review = {};
         };
@@ -136,7 +138,7 @@
 
     app.directive('productInfo', function() {
         return {
-            restrict: 'E',
+            restrict: 'A',
             templateUrl: 'product_info.html'
         };
     });

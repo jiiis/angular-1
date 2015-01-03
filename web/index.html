@@ -16,7 +16,7 @@
         </header>
         <ul class="list-group clearfix">
             <li class="list-group-item" ng-repeat="product in store.products | orderBy:'-price' | limitTo:3" ng-hide="product.soldOut">
-                <product-info></product-info>
+                <div product-info></div>
                 <section ng-controller="PanelController as panel">
                     <ul class="nav nav-pills">
                         <li ng-class="{ active:panel.checkTab(1) }"><a href="" ng-click="panel.setTab(1)">Description</a></li>
@@ -51,7 +51,7 @@
                             <strong>Stars: {{ review.stars }}</strong>
                             &nbsp;{{ review.body }}
                             <br>
-                            <cite class="clearifx">- {{ review.author }}</cite>
+                            <cite class="clearifx">- {{ review.author }} on {{ review.createdOn | date }}</cite>
                         </blockquote>
                         <form name="reviewForm" ng-controller="ReviewController as reviewCtrl"
                             ng-submit="reviewForm.$valid && reviewCtrl.submitReview(product)" novalidate>
