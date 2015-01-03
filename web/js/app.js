@@ -142,4 +142,11 @@
             templateUrl: 'product_info.html'
         };
     });
+
+    app.directive('productPanels', function() {
+        return {
+            restrict: 'E',
+            templateUrl: 'product_panels.html'
+        };
+    });
 })();

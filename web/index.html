@@ -17,68 +17,7 @@
         <ul class="list-group clearfix">
             <li class="list-group-item" ng-repeat="product in store.products | orderBy:'-price' | limitTo:3" ng-hide="product.soldOut">
                 <product-info></product-info>
-                <section ng-controller="PanelController as panel">
-                    <ul class="nav nav-pills">
-                        <li ng-class="{ active:panel.checkTab(1) }"><a href="" ng-click="panel.setTab(1)">Description</a></li>
-                        <li ng-class="{ active:panel.checkTab(2) }"><a href="" ng-click="panel.setTab(2)">Gallery</a></li>
-                        <li ng-class="{ active:panel.checkTab(3) }"><a href="" ng-click="panel.setTab(3)">Specifications</a></li>
-                        <li ng-class="{ active:panel.checkTab(4) }"><a href="" ng-click="panel.setTab(4)">Reviews</a></li>
-                    </ul>
-                    <div class="panel" ng-show="panel.checkTab(1)">
-                        <h4>Description</h4>
-                        <p>{{ product.description | limitTo:150 | uppercase }}</p>
-                    </div>
-                    <div class="panel" ng-show="panel.checkTab(2)">
-                        <h4>Gallery</h4>
-                        <div ng-controller="GalleryController as gallery" ng-show="product.images.length">
-                            <p>
-                                <img ng-src="{{ product.images[gallery.current].full }}">
-                            </p>
-                            <ul class="nav clearfix">
-                                <li class="pull-left thumbnail" ng-repeat="image in product.images">
-                                    <img ng-src="{{ image.thumb }}" ng-click="gallery.setImage($index)">
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="panel" ng-show="panel.checkTab(3)">
-                        <h4>Specifications</h4>
-                        <blockquote>None yet</blockquote>
-                    </div>
-                    <div class="panel" ng-show="panel.checkTab(4)">
-                        <h4>Reviews</h4>
-                        <blockquote ng-repeat="review in product.reviews">
-                            <strong>Stars: {{ review.stars }}</strong>
-                            &nbsp;{{ review.body }}
-                            <br>
-                            <cite class="clearifx">- {{ review.author }} on {{ review.createdOn | date }}</cite>
-                        </blockquote>
-                        <form name="reviewForm" ng-controller="ReviewController as reviewCtrl"
-                            ng-submit="reviewForm.$valid && reviewCtrl.submitReview(product)" novalidate>
-                            <blockquote>
-                                <strong>Stars: {{ reviewCtrl.review.stars }}</strong>
-                                &nbsp;{{ reviewCtrl.review.body }}
-                                <br>
-                                <cite class="clearifx">- {{ reviewCtrl.review.author }}</cite>
-                            </blockquote>
-                            <h4>Submit a Review</h4>
-                            <fieldset class="form-group">
-                                <select class="form-control" title="Stars" ng-model="reviewCtrl.review.stars" ng-options="stars for stars in [5,4,3,2,1]" required>
-                                    <option value="">Rate the product</option>
-                                </select>
-                            </fieldset>
-                            <fieldset class="form-group">
-                                <textarea class="form-control" title="Review" placeholder="Write a short review of the product..." ng-model="reviewCtrl.review.body" required></textarea>
-                            </fieldset>
-                            <fieldset class="form-group">
-                                <input class="form-control" title="Email" type="email" placeholder="you@email.com" ng-model="reviewCtrl.review.author" required>
-                            </fieldset>
-                            <fieldset class="form-group">
-                                <input class="btn btn-primary pull-right" type="submit" value="Submit Review">
-                            </fieldset>
-                        </form>
-                    </div>
-                </section>
+                <product-panels></product-panels>
             </li>
         </ul>
 
