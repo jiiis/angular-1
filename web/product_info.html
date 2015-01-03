@@ -1,0 +1,8 @@
+<h2>
+    <img class = "small-img img-circle" ng-src="{{ product.icon.thumb }}">
+    &nbsp;{{ product.name }}
+    <em class="pull-right">{{ product.price | currency }}</em>
+</h2>
+<p>
+    <button class="btn btn-danger pull-right" ng-show="product.canPurchase">Add to Cart</button>
+</p>
