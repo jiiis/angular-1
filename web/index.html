@@ -6,14 +6,18 @@
         <title>Learning Angular JS</title>
 
         <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="http://bootswatch.com/darkly/bootstrap.min.css">
+        <!--<link rel="stylesheet" type="text/css" href="http://bootswatch.com/darkly/bootstrap.min.css">-->
+        <link rel="stylesheet" type="text/css" href="css/app.css">
     </head>
     <body class="container" ng-controller="StoreController as store">
-        <h1 class="text-center">erNiuNiu Crafted Store</h1>
-        <ul class="list-group">
+        <header>
+            <h1 class="text-center">erNiuNiu Crafted Store</h1>
+            <h4 class="text-center">- pangCaiCai, erNiuNiu and jibaGong's Gem House -</h4>
+        </header>
+        <ul class="list-group clearfix">
             <li class="list-group-item" ng-repeat="product in store.products | orderBy:'-price' | limitTo:3" ng-hide="product.soldOut">
                 <h2>
-                    <img class = "small-img img-circle" ng-src="{{ product.image.thumb }}" />
+                    <img class = "small-img img-circle" ng-src="{{ product.icon.thumb }}">
                     &nbsp;{{ product.name }}
                     <em class="pull-right">{{ product.price | currency }}</em>
                 </h2>
@@ -23,46 +27,61 @@
                 <section ng-controller="PanelController as panel">
                     <ul class="nav nav-pills">
                         <li ng-class="{ active:panel.checkTab(1) }"><a href="" ng-click="panel.setTab(1)">Description</a></li>
-                        <li ng-class="{ active:panel.checkTab(2) }"><a href="" ng-click="panel.setTab(2)">Specifications</a></li>
-                        <li ng-class="{ active:panel.checkTab(3) }"><a href="" ng-click="panel.setTab(3)">Reviews</a></li>
+                        <li ng-class="{ active:panel.checkTab(2) }"><a href="" ng-click="panel.setTab(2)">Gallery</a></li>
+                        <li ng-class="{ active:panel.checkTab(3) }"><a href="" ng-click="panel.setTab(3)">Specifications</a></li>
+                        <li ng-class="{ active:panel.checkTab(4) }"><a href="" ng-click="panel.setTab(4)">Reviews</a></li>
                     </ul>
                     <div class="panel" ng-show="panel.checkTab(1)">
                         <h4>Description</h4>
-                        <p>{{product.description | limitTo:150 | uppercase }}</p>
+                        <p>{{ product.description | limitTo:150 | uppercase }}</p>
                     </div>
                     <div class="panel" ng-show="panel.checkTab(2)">
+                        <h4>Gallery</h4>
+                        <div ng-controller="GalleryController as gallery" ng-show="product.images.length">
+                            <div class="img-wrap">
+                                <img ng-src="{{ product.images[gallery.current].full }}">
+                            </div>
+                            <ul class="nav nav-pills clearfix">
+                                <li class="pull-left thumbnail" ng-repeat="image in product.images">
+                                    <img ng-src="{{ image.thumb }}" ng-click="gallery.setImage($index)">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel" ng-show="panel.checkTab(3)">
                         <h4>Specifications</h4>
                         <blockquote>None yet</blockquote>
                     </div>
-                    <div class="panel" ng-show="panel.checkTab(3)">
-                        <h3>Reviews</h3>
+                    <div class="panel" ng-show="panel.checkTab(4)">
+                        <h4>Reviews</h4>
                         <blockquote ng-repeat="review in product.reviews">
                             <strong>Stars: {{ review.stars }}</strong>
                             &nbsp;{{ review.body }}
                             <br>
                             <cite class="clearifx">- {{ review.author }}</cite>
                         </blockquote>
-                        <form name="reviewForm">
+                        <form name="reviewForm" ng-controller="ReviewController as reviewCtrl"
+                            ng-submit="reviewForm.$valid && reviewCtrl.submitReview(product)" novalidate>
                             <blockquote>
-                                <strong>Stars: {{ review.stars }}</strong>
-                                &nbsp;{{ review.body }}
+                                <strong>Stars: {{ reviewCtrl.review.stars }}</strong>
+                                &nbsp;{{ reviewCtrl.review.body }}
                                 <br>
-                                <cite class="clearifx">- {{ review.author }}</cite>
+                                <cite class="clearifx">- {{ reviewCtrl.review.author }}</cite>
                             </blockquote>
-                            <h3>Submit a Review</h3>
+                            <h4>Submit a Review</h4>
                             <fieldset class="form-group">
-                                <select class="form-control" title="Stars" ng-model="review.stars" ng-options="stars for stars in [5,4,3,2,1]">
+                                <select class="form-control" title="Stars" ng-model="reviewCtrl.review.stars" ng-options="stars for stars in [5,4,3,2,1]" required>
                                     <option value="">Rate the product</option>
                                 </select>
                             </fieldset>
                             <fieldset class="form-group">
-                                <textarea class="form-control" title="Review" placeholder="Write a short review of the product..." ng-model="review.body"></textarea>
+                                <textarea class="form-control" title="Review" placeholder="Write a short review of the product..." ng-model="reviewCtrl.review.body" required></textarea>
                             </fieldset>
                             <fieldset class="form-group">
-                                <input class="form-control" title="Email" type="email" placeholder="you@email.com" ng-model="review.author" />
+                                <input class="form-control" title="Email" type="email" placeholder="you@email.com" ng-model="reviewCtrl.review.author" required>
                             </fieldset>
                             <fieldset class="form-group">
-                                <input class="btn btn-primary pull-right" type="submit" value="Submit Review" />
+                                <input class="btn btn-primary pull-right" type="submit" value="Submit Review">
                             </fieldset>
                         </form>
                     </div>
