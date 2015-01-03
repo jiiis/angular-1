@@ -16,7 +16,7 @@
         </header>
         <ul class="list-group clearfix">
             <li class="list-group-item" ng-repeat="product in store.products | orderBy:'-price' | limitTo:3" ng-hide="product.soldOut">
-                <div ng-include="'product_info.html'"></div>
+                <product-info></product-info>
                 <section ng-controller="PanelController as panel">
                     <ul class="nav nav-pills">
                         <li ng-class="{ active:panel.checkTab(1) }"><a href="" ng-click="panel.setTab(1)">Description</a></li>
@@ -31,10 +31,10 @@
                     <div class="panel" ng-show="panel.checkTab(2)">
                         <h4>Gallery</h4>
                         <div ng-controller="GalleryController as gallery" ng-show="product.images.length">
-                            <div class="img-wrap">
+                            <p>
                                 <img ng-src="{{ product.images[gallery.current].full }}">
-                            </div>
-                            <ul class="nav nav-pills clearfix">
+                            </p>
+                            <ul class="nav clearfix">
                                 <li class="pull-left thumbnail" ng-repeat="image in product.images">
                                     <img ng-src="{{ image.thumb }}" ng-click="gallery.setImage($index)">
                                 </li>

@@ -133,4 +133,11 @@
             this.review = {};
         };
     });
+
+    app.directive('productInfo', function() {
+        return {
+            restrict: 'E',
+            templateUrl: 'product_info.html'
+        };
+    });
 })();
