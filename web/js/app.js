@@ -138,7 +138,7 @@
 
     app.directive('productInfo', function() {
         return {
-            restrict: 'A',
+            restrict: 'E',
             templateUrl: 'product_info.html'
         };
     });
