@@ -97,18 +97,6 @@
         this.products = gems;
     });
 
-    app.controller('PanelController', function() {
-        this.tab = 1;
-
-        this.setTab = function(tab) {
-            this.tab = tab;
-        };
-
-        this.checkTab = function(tab) {
-            return this.tab === tab;
-        };
-    });
-
     app.controller('GalleryController', function() {
         this.current = 0;
 
@@ -146,7 +134,19 @@
     app.directive('productPanels', function() {
         return {
             restrict: 'E',
-            templateUrl: 'product_panels.html'
+            templateUrl: 'product_panels.html',
+            controller: function() {
+                this.tab = 1;
+
+                this.setTab = function(tab) {
+                    this.tab = tab;
+                };
+
+                this.checkTab = function(tab) {
+                    return this.tab === tab;
+                };
+            },
+            controllerAs: 'panel'
         };
     });
 })();

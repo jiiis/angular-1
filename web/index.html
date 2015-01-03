@@ -17,7 +17,7 @@
         <ul class="list-group clearfix">
             <li class="list-group-item" ng-repeat="product in store.products | orderBy:'-price' | limitTo:3" ng-hide="product.soldOut">
                 <product-info></product-info>
-                <product-panels ng-controller="PanelController as panel"></product-panels>
+                <product-panels>
             </li>
         </ul>
 
