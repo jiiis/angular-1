@@ -1,4 +1,4 @@
 learn.angular.js
 ================
 
-Learning Angular JS
+Learning Angular JS.
